@@ -2,6 +2,7 @@
 
 
 import sys
+
 from collections.abc import Mapping
 
 from rdflib import Graph, Namespace
@@ -13,10 +14,12 @@ from rdflib._type_checking import _NamespaceSetString
 crm = Namespace("http://www.cidoc-crm.org/cidoc-crm/")
 crmcls = Namespace("https://clscor.io/ontologies/CRMcls/")
 clst = Namespace("https://core.clscor.io/entity/")
+clscore = Namespace("https://core.clscor.io/entity/")
 frbr = Namespace("https://cidoc-crm.org/frbroo/")
 crmdig = Namespace("https://cidoc-crm.org/crmdig/")
 lrm = Namespace("http://www.cidoc-crm.org/lrmoo/")
 pem = Namespace("http://parthenos.d4science.org/CRMext/CRMpe.rdfs")
+
 
 namespaces = {
     key: value for key, value
@@ -26,7 +29,14 @@ namespaces = {
 
 
 class CLSInfraNamespaceManager(NamespaceManager):
-    """Custom NamespaceManager for CLSInfra."""
+    """Custom NamespaceManager for CLSInfra.
+
+    Useage e.g. for creating a namespaced graph:
+    ```
+    graph = rdflib.Graph
+    clisn.CLSInfraNamespaceManager(graph)
+    ```
+    """
 
     def __init__(self,
                  graph: Graph,
@@ -38,6 +48,11 @@ class CLSInfraNamespaceManager(NamespaceManager):
             graph.bind(prefix, ns)
 
 
-# clst = ...
-# clscore = ...
-# corpus_key = ...
+def corpus_base(corpus_key: str) -> Namespace:
+    """..."""
+    corpus_key = corpus_key.lower()
+
+    return Namespace(f"https://{corpus_key}.clscor.io/entity/")
+
+
+# todo: clst + vocabs
