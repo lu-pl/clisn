@@ -33,7 +33,11 @@ graph = Graph()
 CLSInfraNamespaceManager(graph)
 
 graph.add(
-    (URIRef("subject"), crm["p90_has_value"], Literal("some value"))
+    (
+	    URIRef("subject"), 
+		crm["p90_has_value"], 
+		Literal("some value")
+	)
 )
 
 ```
