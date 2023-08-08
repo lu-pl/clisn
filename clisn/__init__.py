@@ -1,5 +1,2 @@
-"""Module interface for CLiSN."""
-
-from clisn import namespaces
-
-__all__ = namespaces.keys
+from clisn.manager import CLSInfraNamespaceManager
+from clisn.namespaces import *
