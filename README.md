@@ -14,10 +14,50 @@ A collection of [RDFLib](https://rdflib.readthedocs.io/en/stable/) namespaces fo
 CLiSN provides `rdflib.Namespaces` for the CLSInfra project.
 
 ```python
-# todo: find a good example.
+from rdflib import Graph
+from rdflib.namespace import RDF
+
+from clisn import crm, crmcls, corpus_base
+
+base_ns = corpus_base("SweDraCor")
+attrassign_uri = base_ns["attrassign/1"]
+
+triples = [
+    (
+        attrassign_uri,
+        RDF.type,
+        crm["E13_Attribute_Assignment"]
+    ),
+    (
+        attrassign_uri,
+        crm["P140_assigned_attribute_to"],
+        base_ns["corpus"]
+    ),
+    (
+        attrassign_uri,
+        crm["P177_assigned_property_of_type"],
+        crmcls["Z8_corpus_has_corpus_type"]
+    )
+]
+
+graph = Graph()
+
+for triple in triples:
+    graph.add(triple)
+
+print(graph.serialize())
 ```
 
-Note that `from clisn import *` imports `rdflib.Namespace` instances only. Please always use explicit imports.
+Output:
+```ttl
+@prefix ns1: <http://www.cidoc-crm.org/cidoc-crm/> .
+
+<https://swedracor.clscor.io/entity/attrassign/1> a ns1:E13_Attribute_Assignment ;
+    ns1:P140_assigned_attribute_to <https://swedracor.clscor.io/entity/corpus> ;
+    ns1:P177_assigned_property_of_type <https://clscor.io/ontologies/CRMcls/Z8_corpus_has_corpus_type> .
+```
+
+Note that `from clisn import *` imports `rdflib.Namespace` instances only.
 
 
 ### NamespaceManager
@@ -34,9 +74,18 @@ CLSInfraNamespaceManager(graph)
 
 graph.add(
     (
-        URIRef("subject"),
+        URIRef("https://subject.xyz/example/"),
         crm["p90_has_value"],
         Literal("some value")
     )
 )
+
+print(graph.serialize())
+```
+
+Output: 
+```ttl
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+
+<https://subject.xyz/example/> crm:p90_has_value "some value" .
 ```

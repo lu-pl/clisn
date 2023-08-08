@@ -1,9 +1,6 @@
 """CLiSN - Namespaces and custom NamespaceManager for CLSInfra."""
 
-
 import sys
-
-from collections.abc import Mapping
 
 from rdflib import Graph, Namespace
 from rdflib.namespace import NamespaceManager
@@ -13,12 +10,22 @@ from rdflib._type_checking import _NamespaceSetString
 # namespaces
 crm = Namespace("http://www.cidoc-crm.org/cidoc-crm/")
 crmcls = Namespace("https://clscor.io/ontologies/CRMcls/")
-clst = Namespace("https://core.clscor.io/entity/")
+clst = Namespace("https://core.clscor.io/entity/type/")
 clscore = Namespace("https://core.clscor.io/entity/")
 frbr = Namespace("https://cidoc-crm.org/frbroo/")
 crmdig = Namespace("https://cidoc-crm.org/crmdig/")
 lrm = Namespace("http://www.cidoc-crm.org/lrmoo/")
 pem = Namespace("http://parthenos.d4science.org/CRMext/CRMpe.rdfs")
+
+
+def corpus_base(corpus_key: str) -> Namespace:
+    """Generate a corpus base URI given a corpus_key (the corpus acronym).
+
+    Pattern: https://{corpus_key}.clscor.io/entity/{entity-type}/{hash-id}.
+    """
+    corpus_key = corpus_key.lower()
+
+    return Namespace(f"https://{corpus_key}.clscor.io/entity/")
 
 
 namespaces = {
@@ -46,13 +53,3 @@ class CLSInfraNamespaceManager(NamespaceManager):
 
         for prefix, ns in namespaces.items():
             graph.bind(prefix, ns)
-
-
-def corpus_base(corpus_key: str) -> Namespace:
-    """..."""
-    corpus_key = corpus_key.lower()
-
-    return Namespace(f"https://{corpus_key}.clscor.io/entity/")
-
-
-# todo: clst + vocabs
