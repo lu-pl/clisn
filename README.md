@@ -4,6 +4,8 @@
 
 A collection of [RDFLib](https://rdflib.readthedocs.io/en/stable/) namespaces for the [Computational Literary Studies Infrastructure](https://clsinfra.io/) project.
 
+Test: U+1F4DA
+
 ## Requirements
 * Python >=3.11
 
