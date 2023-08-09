@@ -61,8 +61,6 @@ Output:
     ns1:P177_assigned_property_of_type <https://clscor.io/ontologies/CRMcls/Z8_corpus_has_corpus_type> .
 ```
 
-Note that `from clisn import *` imports `rdflib.Namespace` instances only.
-
 
 ### NamespaceManager
 
