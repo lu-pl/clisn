@@ -8,6 +8,9 @@ A collection of [RDFLib](https://rdflib.readthedocs.io/en/stable/) namespaces fo
 * Python >=3.11
 
 ## Installation
+```shell
+pip install clisn
+```
 
 ## Usage
 
