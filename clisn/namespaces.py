@@ -8,11 +8,11 @@ from rdflib import Graph, Namespace
 # namespaces
 crm = Namespace("http://www.cidoc-crm.org/cidoc-crm/")
 crmcls = Namespace("https://clscor.io/ontologies/CRMcls/")
-clst = Namespace("https://core.clscor.io/entity/type/")
-clscore = Namespace("https://core.clscor.io/entity/")
-frbr = Namespace("https://cidoc-crm.org/frbroo/")
-crmdig = Namespace("https://cidoc-crm.org/crmdig/")
-lrm = Namespace("http://www.cidoc-crm.org/lrmoo/")
+# clst = Namespace("https://core.clscor.io/entity/type/")
+# clscore = Namespace("https://core.clscor.io/entity/")
+frbroo = Namespace("http://iflastandards.info/ns/fr/frbr/frbroo/")
+crmdig = Namespace("http://www.ics.forth.gr/isl/CRMdig/")
+lrm = Namespace("http://iflastandards.info/ns/lrm/lrmoo/")
 pem = Namespace("http://parthenos.d4science.org/CRMext/CRMpe.rdfs")
 
 
